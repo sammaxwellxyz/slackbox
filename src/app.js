@@ -17,8 +17,8 @@ const refreshToken = () =>
     if (data.body['refresh_token']) {
       spotifyApi.setRefreshToken(data.body['refresh_token']);
     }
+    setTimeout(refreshToken, (data.body['expires_in'] - 30) * 1000);
     return data.body['access_token'];
-    setTimeout(refreshToken, (expires_in - 30) * 1000);
   });
 
 
@@ -100,5 +100,5 @@ app.post('/store', async (req, res) => {
   }
 });
 
-app.set('port', (process.env.PORT || 5001));
+app.set('port', (process.env.PORT || 5000));
 app.listen(app.get('port'));
