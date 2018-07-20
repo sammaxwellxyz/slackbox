@@ -79,6 +79,7 @@ app.post('/store', async (req, res) => {
   try {
 
     const { text } = req.body;
+    const accessToken = spotifyApi.getAccessToken();
 
     if (text.trim().length === 0) {
       return res.send(docs);
