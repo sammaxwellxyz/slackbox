@@ -17,7 +17,7 @@ const refreshToken = () =>
     if (data.body['refresh_token']) {
       spotifyApi.setRefreshToken(data.body['refresh_token']);
     }
-    setTimeout(refreshToken, (data.body['expires_in'] - 30) * 1000);
+    setTimeout(refreshToken, Math.min(30000, (data.body['expires_in'] - 30) * 1000));
     return data.body['access_token'];
   });
 
